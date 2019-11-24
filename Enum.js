@@ -1,8 +1,8 @@
 var exports=module.exports={};
-exports.EnvURL="http://localhost";
+exports.EnvURL="https://restroapi.herokuapp.com";
 exports.Issuer="Restro";
 exports.Subject="Restro@Test";
-exports.Audience="http://localhost";
+exports.Audience="https://restroapi.herokuapp.com";
 exports.Port=80;
 
 exports.ReturnCode = {
