@@ -8,9 +8,7 @@ var portEnv=require('./Enum.js')
 var Genresponse=require('./Common/Response.js');
 app.use(bodyParser.json())
 
-
 var port=process.env.PORT || portEnv.Port
-
 
 const RequestDecryption=(req,res,next)=> {
     var data=middleWare.RequestDecryption();
@@ -23,11 +21,8 @@ const ResponseEncryption=(req,res,next)=> {
     res.end(JSON.stringify(res.body));
 }
 app.use(RequestDecryption);
+
 //*API Section */
-
-
-
-
 app.post(portEnv.APIURL.CreateToken,function(req,res,next){
     var requestBody=req.body;
     var header=req.headers.appid;
@@ -35,22 +30,7 @@ app.post(portEnv.APIURL.CreateToken,function(req,res,next){
     res.body=Genresponse.createResponse(data,portEnv.ReturnCode.Success,portEnv.ReturnMsg.Success);
     next();
 });
-
-
-app.get("/hello",function(req,res){
-    res.send("I changed the line Test");
-});
-
-
-
-app.get("/",function(req,res){
-    res.send("new hosted file on heroku");
-});
-
-
-app.use(ResponseEncryption);
-
 //*API Section */
 
-
+app.use(ResponseEncryption);
 app.listen(port);
