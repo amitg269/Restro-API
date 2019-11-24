@@ -5,7 +5,7 @@ var middleWARE=require('.././MiddleWare/Middleware.js');
 const bodyParser = require('body-parser');
 var portEnv=require('./../Enum.js');
 var Genresponse=require('../Common/Response.js');
-
+var port=process.env.PORT || portEnv.Port
 app.use(bodyParser.json())
 
 const TokenAuth=(req,res,next)=>{
@@ -44,4 +44,4 @@ app.all("/",function(req,res,next){
 
 app.use('/',router)
 app.use(ResponseEncryption);
-app.listen(portEnv.Port);
+app.listen(port);

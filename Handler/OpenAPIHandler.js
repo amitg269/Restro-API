@@ -8,6 +8,8 @@ var portEnv=require('./../Enum.js')
 var Genresponse=require('../Common/Response.js');
 app.use(bodyParser.json())
 
+var port=process.env.PORT || portEnv.Port
+
 const RequestDecryption=(req,res,next)=> {
     var data=middleWare.RequestDecryption();
     next();
@@ -35,4 +37,4 @@ app.post(portEnv.APIURL.CreateToken,function(req,res,next){
 //*API Section */
 
 app.use(ResponseEncryption);
-app.listen(portEnv.Port);
+app.listen(port);
