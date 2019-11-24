@@ -25,22 +25,13 @@ app.use(RequestDecryption);
 
 //*API Section */
 
-app.post(portEnv.APIURL.CreateToken,function(req,res,next){
-    var requestBody=req.body;
-    var header=req.headers.appid;
-    var data=JWTModule.CreateToken(requestBody,header);
-    res.body=Genresponse.createResponse(data,portEnv.ReturnCode.Success,portEnv.ReturnMsg.Success);
-    next();
-});
-
-
-app.get("/",function(req,res){
-    res.send("I changed the line Test open api handler")
-})
-
-app.post("/test",function(req,res,next){
-    res.send("hollaAPI open api handler");
-});
+// app.post(portEnv.APIURL.CreateToken,function(req,res,next){
+//     var requestBody=req.body;
+//     var header=req.headers.appid;
+//     var data=JWTModule.CreateToken(requestBody,header);
+//     res.body=Genresponse.createResponse(data,portEnv.ReturnCode.Success,portEnv.ReturnMsg.Success);
+//     next();
+// });
 
 
 //*API Section */

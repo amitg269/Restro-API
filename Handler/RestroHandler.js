@@ -38,9 +38,7 @@ app.get('/default',function(req,res,next){
     next();      
 });
 
-app.all("/",function(req,res,next){
-    res.send("This All Default"); 
-});
+
 
 app.use('/',router)
 app.use(ResponseEncryption);
