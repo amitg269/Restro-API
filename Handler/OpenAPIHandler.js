@@ -1,6 +1,5 @@
 var express=require('express');
 var app=express();
-var router=express.Router();
 var middleWare=require('.././MiddleWare/Middleware.js')
 const bodyParser = require('body-parser');
 var JWTModule=require("../MiddleWare/JWTAuth/JWTTokenAuth.js")
@@ -25,16 +24,15 @@ app.use(RequestDecryption);
 
 //*API Section */
 
-// app.post(portEnv.APIURL.CreateToken,function(req,res,next){
-//     var requestBody=req.body;
-//     var header=req.headers.appid;
-//     var data=JWTModule.CreateToken(requestBody,header);
-//     res.body=Genresponse.createResponse(data,portEnv.ReturnCode.Success,portEnv.ReturnMsg.Success);
-//     next();
-// });
-
-
-//*API Section */
+app.post(portEnv.APIURL.CreateToken,function(req,res,next){
+    var requestBody=req.body;
+    var header=req.headers.appid;
+    var data=JWTModule.CreateToken(requestBody,header);
+    res.body=Genresponse.createResponse(data,portEnv.ReturnCode.Success,portEnv.ReturnMsg.Success);
+    next();
+});
 
 app.use(ResponseEncryption);
-app.listen(port);
+
+module.exports = app;
+

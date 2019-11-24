@@ -38,8 +38,6 @@ app.get('/default',function(req,res,next){
     next();      
 });
 
-
-
-app.use('/',router)
 app.use(ResponseEncryption);
-app.listen(port);
+
+module.exports=app;
