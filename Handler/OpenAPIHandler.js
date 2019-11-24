@@ -34,6 +34,10 @@ app.post(portEnv.APIURL.CreateToken,function(req,res,next){
 });
 
 
+app.get("/",function(req,res){
+    res.send("I changed the line Test")
+})
+
 app.post("/test",function(req,res,next){
     res.send("hollaAPI");
 });
