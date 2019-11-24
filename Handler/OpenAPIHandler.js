@@ -21,6 +21,8 @@ const ResponseEncryption=(req,res,next)=> {
 
 app.use(RequestDecryption);
 
+//*API Section */
+
 app.post(portEnv.APIURL.CreateToken,function(req,res,next){
     var requestBody=req.body;
     var header=req.headers.appid;
@@ -29,6 +31,8 @@ app.post(portEnv.APIURL.CreateToken,function(req,res,next){
     next();
 });
 
+
+//*API Section */
 
 app.use(ResponseEncryption);
 app.listen(portEnv.Port);
