@@ -34,6 +34,11 @@ app.post(portEnv.APIURL.CreateToken,function(req,res,next){
 });
 
 
+app.post("/test",function(req,res,next){
+    res.send("hollaAPI");
+});
+
+
 //*API Section */
 
 app.use(ResponseEncryption);
