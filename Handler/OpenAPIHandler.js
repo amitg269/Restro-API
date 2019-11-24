@@ -35,11 +35,11 @@ app.post(portEnv.APIURL.CreateToken,function(req,res,next){
 
 
 app.get("/",function(req,res){
-    res.send("I changed the line Test")
+    res.send("I changed the line Test open api handler")
 })
 
 app.post("/test",function(req,res,next){
-    res.send("hollaAPI");
+    res.send("hollaAPI open api handler");
 });
 
 
