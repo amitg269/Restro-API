@@ -17,7 +17,6 @@ const RequestDecryption=(req,res,next)=> {
 const ResponseEncryption=(req,res,next)=> {
     var data=middleWare.ResponseEncryption();
     res.setHeader('Content-Type', 'application/json');
-    console.log("deepak pc");
     res.end(JSON.stringify(res.body));
 }
 
