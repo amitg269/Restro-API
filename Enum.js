@@ -3,7 +3,7 @@ exports.EnvURL="http://localhost";
 exports.Issuer="Restro";
 exports.Subject="Restro@Test";
 exports.Audience="http://localhost";
-exports.Port=80;
+exports.Port=3000;
 
 exports.ReturnCode = {
     Success: 200,
