@@ -1,9 +1,9 @@
 var exports=module.exports={};
-exports.EnvURL="https://restroapi.herokuapp.com";
+exports.EnvURL="http://localhost";
 exports.Issuer="Restro";
 exports.Subject="Restro@Test";
-exports.Audience="https://restroapi.herokuapp.com";
-exports.Port=80;
+exports.Audience="http://localhost";
+exports.Port=3000;
 
 exports.ReturnCode = {
     Success: 200,
@@ -24,4 +24,3 @@ exports.ReturnMsg = {
 
 exports.APIURL={
     CreateToken: "/CreateToken",
-}
