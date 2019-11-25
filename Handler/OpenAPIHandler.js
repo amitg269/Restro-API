@@ -15,7 +15,7 @@ const RequestDecryption=(req,res,next)=> {
 }
 
 const ResponseEncryption=(req,res,next)=> {
-    var data=middleWare.ResponseEncryption();
+    var data=middleWare.ResponseEncryption(JSON.stringify(res.body));
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(res.body));
 }

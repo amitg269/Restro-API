@@ -1,5 +1,6 @@
 var exports = module.exports = {};
 var JWTObj=require("../MiddleWare/JWTAuth/JWTTokenAuth.js");
+var responseEncryption=require('../MiddleWare/CryptoModule/Encryption')
 var ConsEnum=require("../Enum.js")
 
 exports.JWTAuth=(req)=>{
@@ -30,6 +31,7 @@ exports.RequestDecryption=(req)=>{
     return "Request Decrytption";
 }
 
-exports.ResponseEncryption=(req)=>{
+exports.ResponseEncryption=(res)=>{
+    responseEncryption.ResponseEncryptionBuilder(res);
     return "Response Encryption";
 }
