@@ -5,12 +5,6 @@ var chars ="0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz*&-%/!?
 var exports=module.exports={};
 
 
-// var clientPublicKey="MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKTkpIb/XM80mk9+satPgxLJ6XO8Bx535ldNSpPCtnHcuZEJ36iDWqZ52e0rGvyU3DlVWFMt+D3vJUDFm+pBvlsCAwEAAQ==";
-// var serverPrivatekey="MIIBOAIBAAJAVlw5KvTi/g4O5wznoAXqokABq3Mb0rnk0RhCNmxAxQpFwPNLkKRRuqDVRxz0xFX33zG/x+nuw68yvZQQJJOQ6wIDAQABAkA/nGSbiI/elFpTxASksVb3te/E6t+2oyiw/45d6fT3bVIVn0BYon8oWkrd5xRHki5bFynusyGoQsHWBHHVStERAiEApw+kZLbVK1J1f53dKs51iEA9JEfVGXYFnyjO++Sb7xMCIQCEVg4EgxZV6dx7CBNSIxw9goMHfqz6tF3iQT+rAoQZyQIgQKSV2P7CJ3xFyPa90MWIxwsMXZCKDcsUS8zPorqH+A8CIAwdEHVrRm0g1hTQ/WvEWP5sZvAVsWHVhs6CKIDP3yW5AiA8R4aM/xRc6d29TFFs2RgA2cubA7K0aO37Q08dNKaWPg==";
-
-
-// var clientPrivateKey="MIIBOwIBAAJBAKTkpIb/XM80mk9+satPgxLJ6XO8Bx535ldNSpPCtnHcuZEJ36iDWqZ52e0rGvyU3DlVWFMt+D3vJUDFm+pBvlsCAwEAAQJAJj+rMm1Vt/K5wKrgx54gB2Gyt1fsRtMFKUcSf4fxDiQHfd6j50tsFV9UGgMK4XXJC+rKi1NfAwBtv9kv18ubUQIhAN7RMDHEvTQ+7Y6+RsbRrlDLuaFMJslWnygaTWb12Ei3AiEAvXMgJCP6ojKuQHNPWRwr2V5AxZM9CBCDIsQTPXWMq30CIQC9Bp5qOkuA/TmvdUC5/rxxEsPiUKY+/Ft9PAMaK8pWtQIgOsBNI2gU/eABsfMQlG3sG0jjhWIX9zxHrqxn2xNtQHECIQDLKPdRv6umCtZlJy/PBzbl606uIq6NXMEFoXmhxE4oXA==";
-// var serverPublicKey="MFswDQYJKoZIhvcNAQEBBQADSgAwRwJAVlw5KvTi/g4O5wznoAXqokABq3Mb0rnk0RhCNmxAxQpFwPNLkKRRuqDVRxz0xFX33zG/x+nuw68yvZQQJJOQ6wIDAQAB";
 
 const serverPrivatekey=new NodeRSA('-----BEGIN RSA PRIVATE KEY-----\n'+
 'MIIBOAIBAAJAbvY7IpsSULILxmXKhT/ZYVZ5U1T/HRpJ/2Cq1aIyJSvzULsd4coN\n'+
@@ -49,11 +43,24 @@ const clientPrivateKey=new NodeRSA('-----BEGIN RSA PRIVATE KEY-----\n'+
 
 exports.ResponseEncryptionBuilder=(res)=>{
       var response={};
+      var enc={};
       var session =generateKey(32);
       response.requestID=uuidv4();
       response.Data=CryptoJS.AES.encrypt(res,session).toString();
       response.sessionID=clientPublicKey.encrypt(session, 'base64');
-     return response;
+      var encodeResponseByte= CryptoJS.enc.Utf8.parse(JSON.stringify(response));
+      enc.Response=CryptoJS.enc.Base64.stringify(encodeResponseByte);
+     return enc;
+}
+
+exports.RequestDecryptionBuilder=(req)=>{
+  let byteRequest = CryptoJS.enc.Base64.parse(res.Request);
+  let request= byteRequest.toString(CryptoJS.enc.Utf8);
+  let parsedJsonRequest=JSON.parse(request);
+  let decryptRSA=serverPrivatekey.decrypt(parsedJsonRequest.sessionID, 'utf8');
+  let aesDecrypt=CryptoJS.AES.decrypt(parsedJsonRequest.Data,decryptRSA);
+  let plainRequest =aesDecrypt.toString(CryptoJS.enc.Utf8);
+  return JSON.parse(plainRequest);
 }
 
 
@@ -75,3 +82,5 @@ const generateKey=(keySize)=>{
 // const aesDecrypt=CryptoJS.AES.decrypt(aesEncrypt,decrypted);
 // const faes=aesDecrypt.toString(CryptoJS.enc.Utf8)
 // console.log('decrypted: ', decrypted);
+// var parsedWordArray = CryptoJS.enc.Base64.parse(enc.Response);
+//       var parsedStr = parsedWordArray.toString(CryptoJS.enc.Utf8);
