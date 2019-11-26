@@ -1,6 +1,4 @@
-//var CryptoJS = require("crypto-js");
-var AES = require("crypto-js/aes");
-var rsa=require("crypto-js/");
+var CryptoJS = require("crypto-js");
 const uuidv4 = require('uuid/v4');
 const NodeRSA = require('node-rsa');
 var chars ="0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz*&-%/!?*+=()";
@@ -53,8 +51,9 @@ exports.ResponseEncryptionBuilder=(res)=>{
     var response={};
     var session =generateKey(32);
     response.requestID=uuidv4();
-    response.Data=AES.encrypt(res,session); 
+    response.Data=CryptoJS.AES.encrypt(res,session).toString();
     response.sessionID=clientPublicKey.encrypt(session, 'base64');
+    var data=CryptoJS.enc.Base64.parse(response.Data);
     return response;
 }
 
