@@ -74,3 +74,27 @@ const generateKey=(keySize)=>{
 }
 
 
+// var express = require('express');
+// var app = express();
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.json())
+// var requireEncDes=require('./Enc.js');
+
+// app.post('/EncryptRequest', function(req, res){
+//     var data=req.body;
+//     var data1=requireEncDes.RequestEncryptionBuilder(JSON.stringify(data));
+//     res.body=data1;
+//     res.setHeader('Content-Type', 'application/json');
+//     res.end(JSON.stringify(res.body));
+// });
+
+
+// app.post('/DecryptRequest', function(req, res){
+//     var data=req.body;
+//     var data1=requireEncDes.ResponseDecryptionBuilder(data);
+//     res.body=data1;
+//     res.setHeader('Content-Type', 'application/json');
+//     res.end(JSON.stringify(res.body));
+// });
+
+// app.listen(5000);
