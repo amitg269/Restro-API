@@ -10,7 +10,8 @@ app.use(bodyParser.json())
 var port=process.env.PORT || portEnv.Port
 
 const RequestDecryption=(req,res,next)=> {
-    var data=middleWare.RequestDecryption();
+    var data=middleWare.RequestDecryption(req.body);
+    req.body=data;
     next();
 }
 

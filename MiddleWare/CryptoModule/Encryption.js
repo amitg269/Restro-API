@@ -54,7 +54,7 @@ exports.ResponseEncryptionBuilder=(res)=>{
 }
 
 exports.RequestDecryptionBuilder=(req)=>{
-  let byteRequest = CryptoJS.enc.Base64.parse(res.Request);
+  let byteRequest = CryptoJS.enc.Base64.parse(req.Request);
   let request= byteRequest.toString(CryptoJS.enc.Utf8);
   let parsedJsonRequest=JSON.parse(request);
   let decryptRSA=serverPrivatekey.decrypt(parsedJsonRequest.sessionID, 'utf8');
@@ -74,13 +74,3 @@ const generateKey=(keySize)=>{
 }
 
 
-// const text = session;
-// const aesEncrypt=CryptoJS.AES.encrypt(res,session).toString();
-// const encrypted = clientPublicKey.encrypt(session, 'base64');
-// console.log('encrypted: ', encrypted);
-// const decrypted = clientPrivateKey.decrypt(encrypted, 'utf8');
-// const aesDecrypt=CryptoJS.AES.decrypt(aesEncrypt,decrypted);
-// const faes=aesDecrypt.toString(CryptoJS.enc.Utf8)
-// console.log('decrypted: ', decrypted);
-// var parsedWordArray = CryptoJS.enc.Base64.parse(enc.Response);
-//       var parsedStr = parsedWordArray.toString(CryptoJS.enc.Utf8);
