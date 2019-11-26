@@ -48,13 +48,12 @@ const clientPrivateKey=new NodeRSA('-----BEGIN RSA PRIVATE KEY-----\n'+
 
 
 exports.ResponseEncryptionBuilder=(res)=>{
-    var response={};
-    var session =generateKey(32);
-    response.requestID=uuidv4();
-    response.Data=CryptoJS.AES.encrypt(res,session).toString();
-    response.sessionID=clientPublicKey.encrypt(session, 'base64');
-    var data=CryptoJS.enc.Base64.parse(response.Data);
-    return response;
+      var response={};
+      var session =generateKey(32);
+      response.requestID=uuidv4();
+      response.Data=CryptoJS.AES.encrypt(res,session).toString();
+      response.sessionID=clientPublicKey.encrypt(session, 'base64');
+     return response;
 }
 
 
@@ -66,3 +65,13 @@ const generateKey=(keySize)=>{
     }
     return randomstring;
 }
+
+
+// const text = session;
+// const aesEncrypt=CryptoJS.AES.encrypt(res,session).toString();
+// const encrypted = clientPublicKey.encrypt(session, 'base64');
+// console.log('encrypted: ', encrypted);
+// const decrypted = clientPrivateKey.decrypt(encrypted, 'utf8');
+// const aesDecrypt=CryptoJS.AES.decrypt(aesEncrypt,decrypted);
+// const faes=aesDecrypt.toString(CryptoJS.enc.Utf8)
+// console.log('decrypted: ', decrypted);
