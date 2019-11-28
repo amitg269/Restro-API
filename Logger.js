@@ -15,6 +15,6 @@ log4js.configure({
     errorLogger("TestMethod","demo","Data","Comment")
 }
 
-const errorLogger=(Method,Message,FileName,LineNumber)=>{
+const errorLogger=(Method,Message,FileName,LineNumber,StackTrace)=>{
     loggererror.error("Test Log");
 }
