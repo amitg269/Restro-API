@@ -2,6 +2,7 @@ var JWTOBJ=require('jsonwebtoken');
 const fs   = require('fs');
 var prop=require('./../../Enum.js');
 var exports = module.exports={};
+var Logger=require('../../Logger.js');
 
 var signOptions = {
     issuer:  prop.Issuer,
@@ -28,6 +29,7 @@ exports.CreateToken=(req,AppId)=>{
     var Token=JWTOBJ.sign(payload,privateKEY,signOptions);
     var TokenOject={};
     TokenOject.Token=Token;
+    Logger.infoLogger("CreateToken","JWT","Test","Token Created for "+req.Username);
     return TokenOject;
 }
 

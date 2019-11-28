@@ -1,0 +1,6 @@
+[2019-11-28T16:58:53.365] [ERROR] info - CreateToken JWT eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJZCI6IndlYiIsIlVzZXJOYW1lIjoiQW1pdCIsImlhdCI6MTU3NDk0MDUzMCwiZXhwIjoxNTc1MDI2OTMwLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0IiwiaXNzIjoiUmVzdHJvIiwic3ViIjoiUmVzdHJvQFRlc3QifQ.dA24U_Esr_ziqkcbIITzUGG1YKcM6Vd8ydOG0a_dOCHiC7EOfUqHccV-bUG6PZd5CR565S1cWgOpB1wuP_x8IA Token Created forundefined
+[2019-11-28T16:59:48.582] [ERROR] info - CreateToken JWT eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJZCI6IndlYiIsIlVzZXJOYW1lIjoiQW1pdCIsImlhdCI6MTU3NDk0MDU4NiwiZXhwIjoxNTc1MDI2OTg2LCJhdWQiOiJodHRwOi8vbG9jYWxob3N0IiwiaXNzIjoiUmVzdHJvIiwic3ViIjoiUmVzdHJvQFRlc3QifQ.Vj6ei2B09cp5fHHRNuAvtbb9zUIr3sYhs97SbAPyTqoMeinLD17QH_Q9uo8xleYMTzrQSnj26lWf9NaYRHO40w Token Created forundefined
+[2019-11-28T17:04:28.332] [ERROR] info - CreateToken JWT Test Token Created for Amit
+[2019-11-28T17:05:19.908] [INFO] info - CreateToken JWT Test Token Created for Amit
+[2019-11-28T17:14:35.343] [INFO] info - CreateToken JWT Test Token Created for Amit
+[2019-11-28T17:28:54.956] [INFO] info - CreateToken JWT Test Token Created for Amit
