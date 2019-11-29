@@ -1,4 +1,3 @@
 /node_modules/
-Logs/error.log
-Logs/error.log
-Logs/info.log
+Logs/error.json
+Logs/info.json
