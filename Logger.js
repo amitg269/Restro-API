@@ -16,11 +16,10 @@ log4js.configure({
 
   exports.infoLogger=(MethodName,Module,Data,Comment)=>{ 
     loggerinfo.info(MethodName+" "+Module+" "+Data+" "+Comment);
-    errorLogger("TestMethod","demo","Data","Comment")
 }
 
-const errorLogger=(Method,Message,FileName,LineNumber,StackTrace)=>{
-    loggererror.error("Test");
+exports.infoLogger=(MethodName,Module,Data,Comment)=>{ 
+  loggererror.error(MethodName+" "+Module+" "+Data+" "+Comment);
 }
 
 
