@@ -17,8 +17,8 @@ log4js.configure({
     loggerinfo.info(MethodName+" "+Module+" "+Data+" "+Comment);
 }
 
-exports.errorLogger=(MethodName,Module,Data,Comment)=>{ 
-  loggererror.error(MethodName+" "+Module+" "+Data+" "+Comment);
+exports.errorLogger=(MethodName,Module,StackTrace,Comment)=>{ 
+  loggererror.error(MethodName+" "+Module+" "+StackTrace+" "+Comment);
 }
 
 

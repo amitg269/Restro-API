@@ -30,7 +30,7 @@ app.post(portEnv.APIURL.CreateToken,function(req,res,next){
     var requestBody=req.body;
     var header=req.headers.appid;
     var data=JWTModule.CreateToken(requestBody,header);
-    res.body=Genresponse.createResponse(data,portEnv.ReturnCode.Success,portEnv.ReturnMsg.Success);
+    res.body=data;
     next();
 });
 
