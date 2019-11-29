@@ -1,5 +1,4 @@
 var log4js = require('log4js'); 
-const jsonLayout = require('log4js-json-layout');
 var exports=module.exports={}
 
 log4js.addLayout('json', function(config) {
