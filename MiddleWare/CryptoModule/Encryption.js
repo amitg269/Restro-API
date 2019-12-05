@@ -38,9 +38,6 @@ const clientPrivateKey=new NodeRSA('-----BEGIN RSA PRIVATE KEY-----\n'+
 '-----END RSA PRIVATE KEY-----');
 
 
-
-
-
 exports.ResponseEncryptionBuilder=(res)=>{
       var response={};
       var enc={};
