@@ -5,21 +5,22 @@ let db;
 
 
 const MongoConnect=(callback)=>{
-    MongoClient.connect('mongodb+srv://amitg269:SbXdNaHeEQUHKnea@restro-nkntu.mongodb.net/test?retryWrites=true&w=majority',{useUnifiedTopology: true}).then(client=>{
-        console.log('Connected!');
-        db=client;
+    MongoClient.connect('mongodb+srv://amitg269:SbXdNaHeEQUHKnea@restro-nkntu.mongodb.net/Restro?retryWrites=true&w=majority',{useUnifiedTopology: true}).then(client=>{
+        db=client.db();
+        callback();
+        console.log(db);
     }).catch(err=>{
-     Logger.errorLogger("MongoConnect","Connect.js",err.stack,"connection failed");
-     
+     Logger.errorLogger("MongoConnect","Connect.js",err.stack,"connection failed");   
     })
 }
 
 
 const getDB=()=>{
-    if(db!=null){
+    if(db){
         return db;
     }
     return "Connection Not Done";
 }
 
-module.exports=MongoConnect;
+exports.MongoConnect=MongoConnect;
+exports.getDB=getDB;
