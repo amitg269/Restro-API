@@ -28,10 +28,9 @@ exports.JWTAuth=(req)=>{
 }
 
 exports.RequestDecryption=(req)=>{
-    return "Request Decrytption";
+    return responseEncryption.RequestDecryptionBuilder(req);
 }
 
 exports.ResponseEncryption=(res)=>{
-    responseEncryption.ResponseEncryptionBuilder(res);
-    return "Response Encryption";
+    return responseEncryption.ResponseEncryptionBuilder(res);
 }

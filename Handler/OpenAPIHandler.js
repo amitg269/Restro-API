@@ -10,12 +10,14 @@ app.use(bodyParser.json())
 var port=process.env.PORT || portEnv.Port
 
 const RequestDecryption=(req,res,next)=> {
-    var data=middleWare.RequestDecryption();
+    var data=middleWare.RequestDecryption(req.body);
+    req.body=data;
     next();
 }
 
 const ResponseEncryption=(req,res,next)=> {
     var data=middleWare.ResponseEncryption(JSON.stringify(res.body));
+    res.body=data;
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(res.body));
 }
@@ -28,7 +30,7 @@ app.post(portEnv.APIURL.CreateToken,function(req,res,next){
     var requestBody=req.body;
     var header=req.headers.appid;
     var data=JWTModule.CreateToken(requestBody,header);
-    res.body=Genresponse.createResponse(data,portEnv.ReturnCode.Success,portEnv.ReturnMsg.Success);
+    res.body=data;
     next();
 });
 

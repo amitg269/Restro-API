@@ -38,26 +38,29 @@ const clientPrivateKey=new NodeRSA('-----BEGIN RSA PRIVATE KEY-----\n'+
 '-----END RSA PRIVATE KEY-----');
 
 
-exports.ResponseEncryptionBuilder=(res)=>{
-      var response={};
+
+
+
+exports.RequestEncryptionBuilder=(req)=>{
+      var request={};
       var enc={};
       var session =generateKey(32);
-      response.requestID=uuidv4();
-      response.Data=CryptoJS.AES.encrypt(res,session).toString();
-      response.sessionID=clientPublicKey.encrypt(session, 'base64');
-      var encodeResponseByte= CryptoJS.enc.Utf8.parse(JSON.stringify(response));
-      enc.Response=CryptoJS.enc.Base64.stringify(encodeResponseByte);
+      request.requestID=uuidv4();
+      request.Data=CryptoJS.AES.encrypt(req,session).toString();
+      request.sessionID=serverPublicKey.encrypt(session, 'base64');
+      var encodeRequestByte= CryptoJS.enc.Utf8.parse(JSON.stringify(request));
+      enc.Request=CryptoJS.enc.Base64.stringify(encodeRequestByte);
      return enc;
 }
 
-exports.RequestDecryptionBuilder=(req)=>{
-  let byteRequest = CryptoJS.enc.Base64.parse(req.Request);
-  let request= byteRequest.toString(CryptoJS.enc.Utf8);
-  let parsedJsonRequest=JSON.parse(request);
-  let decryptRSA=serverPrivatekey.decrypt(parsedJsonRequest.sessionID, 'utf8');
-  let aesDecrypt=CryptoJS.AES.decrypt(parsedJsonRequest.Data,decryptRSA);
-  let plainRequest =aesDecrypt.toString(CryptoJS.enc.Utf8);
-  return JSON.parse(plainRequest);
+exports.ResponseDecryptionBuilder=(res)=>{
+  let byteRequest = CryptoJS.enc.Base64.parse(res.Response);
+  let response= byteRequest.toString(CryptoJS.enc.Utf8);
+  let parsedJsonResponse=JSON.parse(response);
+  let decryptRSA=clientPrivateKey.decrypt(parsedJsonResponse.sessionID, 'utf8');
+  let aesDecrypt=CryptoJS.AES.decrypt(parsedJsonResponse.Data,decryptRSA);
+  let plainResponse =aesDecrypt.toString(CryptoJS.enc.Utf8);
+  return JSON.parse(plainResponse);
 }
 
 
@@ -71,3 +74,27 @@ const generateKey=(keySize)=>{
 }
 
 
+// var express = require('express');
+// var app = express();
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.json())
+// var requireEncDes=require('./Enc.js');
+
+// app.post('/EncryptRequest', function(req, res){
+//     var data=req.body;
+//     var data1=requireEncDes.RequestEncryptionBuilder(JSON.stringify(data));
+//     res.body=data1;
+//     res.setHeader('Content-Type', 'application/json');
+//     res.end(JSON.stringify(res.body));
+// });
+
+
+// app.post('/DecryptRequest', function(req, res){
+//     var data=req.body;
+//     var data1=requireEncDes.ResponseDecryptionBuilder(data);
+//     res.body=data1;
+//     res.setHeader('Content-Type', 'application/json');
+//     res.end(JSON.stringify(res.body));
+// });
+
+// app.listen(5000);
