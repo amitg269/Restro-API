@@ -24,3 +24,4 @@ exports.ReturnMsg = {
 
 exports.APIURL={
     CreateToken: "/CreateToken",
+}
