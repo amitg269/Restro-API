@@ -1,4 +1,5 @@
 var log4js = require('log4js'); 
+const path = require("path");
 var exports=module.exports={}
 
 log4js.addLayout('json', function(config) {
@@ -21,6 +22,8 @@ exports.errorLogger=(MethodName,Module,StackTrace,Comment)=>{
   loggererror.error(MethodName+" "+Module+" "+StackTrace+" "+Comment);
 }
 
+
+ exports.ParentDirectory=path.resolve( __dirname,"");
 
 
 
