@@ -1,26 +1,24 @@
-const mongodb= require('mongodb');
+var mongoose = require('mongoose');
 const Logger=require('../Logger.js')
-const MongoClient = mongodb.MongoClient;
-let db;
 
-
-const MongoConnect=(callback)=>{
-    MongoClient.connect('mongodb+srv://amitg269:SbXdNaHeEQUHKnea@restro-nkntu.mongodb.net/Restro?retryWrites=true&w=majority',{useUnifiedTopology: true}).then(client=>{
-        db=client.db();
-        callback();
-        console.log(db);
+const MongooseConnect=()=>{
+    mongoose.connect('mongodb+srv://amitg269:SbXdNaHeEQUHKnea@restro-nkntu.mongodb.net/Restro?retryWrites=true&w=majority',{ useUnifiedTopology: true,useNewUrlParser: true }).then(result=>{
+      db = mongoose.connection;
     }).catch(err=>{
-     Logger.errorLogger("MongoConnect","Connect.js",err.stack,"connection failed");   
+        Logger.errorLogger("MongooseConnect","Connect.js",err.stack,"connection failed");
     })
 }
 
-
 const getDB=()=>{
-    if(db){
+    if(db)
+    {
         return db;
     }
-    return "Connection Not Done";
+    else{
+        Logger.errorLogger("MongoConnect","Connect.js",err.stack,"connection failed");
+        return "No connection";
+    }
 }
 
-exports.MongoConnect=MongoConnect;
+exports.MongooseConnect=MongooseConnect;
 exports.getDB=getDB;

@@ -1,6 +1,7 @@
 var express=require('express');
 var app=express();
 const viewErrorInfo=require('../Common/Response.js');
+const Dish=require('../Model/DishEntity.js');
 const bodyParser = require('body-parser');
 const createResponse=require('../Common/Response.js');
 const Enum=require('../Enum.js');
@@ -47,6 +48,12 @@ app.post("/infologs",function(req,res,next){
     res.end(JSON.stringify(res.body));
    
 });
+
+
+app.post("/insertDish",function(req,res,next){
+    var response;
+     var data=Dish;
+ });
 
 
 
